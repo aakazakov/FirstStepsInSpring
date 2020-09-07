@@ -7,22 +7,22 @@ import org.springframework.stereotype.Component;
 @Component("juicer")
 public class Juicer {
   
-  private Fruity fruit;
+  private Juicy fruit;
   
-  public Fruity getFruit() {
+  public Juicy getFruit() {
     return fruit;
   }
 
   @Autowired(required=false)
   @Qualifier("orange")
-  public void setFruit(Fruity fruit) {
+  public void setFruit(Juicy fruit) {
     this.fruit = fruit;
   }
 
   public Juicer() {
   }
   
-  public Juicer(Fruity fruit) {
+  public Juicer(Juicy fruit) {
     this.fruit = fruit;
   }
   

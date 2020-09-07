@@ -9,12 +9,12 @@ import com.myproject.first_steps_in_spring.step1.juicer.*;
 public class AppConfig {
   
   @Bean(name="grapefruit")
-  public Fruity fruit() {
+  public Juicy fruit() {
     return new Grapefruit();
   }
   
   @Bean(name="juicer")
-  public Juicer juicer(Fruity fruit) {
+  public Juicer juicer(Juicy fruit) {
     return new Juicer(fruit);
   }
   
