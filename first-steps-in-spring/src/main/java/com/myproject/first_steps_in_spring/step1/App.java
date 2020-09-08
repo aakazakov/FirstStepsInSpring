@@ -22,17 +22,22 @@ public class App {
     // Spring (XML config)
     context = new ClassPathXmlApplicationContext("step1/config.xml");
     juicer = context.getBean("juicer", Juicer.class);
+    ((ClassPathXmlApplicationContext) context).close();
     System.out.println(juicer.getJuice()); // Here is your apple juice
+    
     
     // Spring (JavaConfig)
     context = new AnnotationConfigApplicationContext(AppConfig.class);
     juicer = context.getBean("juicer", Juicer.class);
+    ((AnnotationConfigApplicationContext) context).close();
     System.out.println(juicer.getJuice()); // Here is your grapefruit juice
     
     // Spring (JavaConfig + @Autowired)
     context = new AnnotationConfigApplicationContext(AlterAppConfig.class);
     juicer = context.getBean("juicer", Juicer.class);
+    ((AnnotationConfigApplicationContext) context).close();
     System.out.println(juicer.getJuice()); // Here is your orange juice
+    
   }
   
 }
