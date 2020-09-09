@@ -49,9 +49,9 @@
         <div class="catalog">
             <h1 class="catalog__heading">Catalog</h1>
             <a th:each="p : ${ products }"
-               th:text="${ p.title }" 
                class="catalog__item"
-               href="http://localhost:8080/app/product?id={ p.id }"></a>
+               th:href="@{${'http://localhost:8080/app/product?id=' + p.id }}"
+               th:text="${ p.title }" ></a>
         </div>
     </div>
 </body>
