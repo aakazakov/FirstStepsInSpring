@@ -45,12 +45,12 @@
 
 <body>
     <div class="container">
-        <a class="back-link" href="http://localhost:8080/app">Back to main page</a>
+        <a class="back-link" th:href="@{/}">Back to main page</a>
         <div class="catalog">
             <h1 class="catalog__heading">Catalog</h1>
             <a th:each="p : ${ products }"
                class="catalog__item"
-               th:href="@{${'/product?id=' + p.id }}"
+               th:href="@{'/product'(id=${ p.id })}"
                th:text="${ p.title }" ></a>
         </div>
     </div>
