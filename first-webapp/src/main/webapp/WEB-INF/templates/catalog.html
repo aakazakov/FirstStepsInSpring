@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .product-box {
+            display: flex;
+            max-width: 960px;
+            padding: 1rem;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .product {
+            width: 150px;
+            padding: 5px;
+            text-align: center;
+            border: 1px solid blue;
+            background-color: aliceblue;
+            margin-right: 15px;
+        }
+
+        .product__desc,
+        .product__price {
+            margin-top: 5px;
+        }
+
+        .price-value {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="product-box">
+        <div class="product">
+            <h1 th:text="${msg}"></h1>
+            <img src="https://picsum.photos/150" alt="product image">
+            <h2 class="product__title">Lorem, ipsum dolor.</h2>
+            <p class="product__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At, commodi?</p>
+            <p class="product__price">Price: <span class="price-value">100</span></p>
+        </div>
+    </div>
+</body>
+</html>
