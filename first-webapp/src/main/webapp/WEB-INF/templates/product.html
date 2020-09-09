@@ -46,7 +46,7 @@
 
 <body>
     <div class="container">
-       <a class="back-link" href="http://localhost:8080/app/catalog">Back to catalog</a>
+       <a class="back-link" th:href="@{/catalog}">Back to catalog</a>
          <div class="product">
              <img src="https://picsum.photos/150" alt="product image">
              <h2 th:text="${ product.title }" class="product__title"></h2>

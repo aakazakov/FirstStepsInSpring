@@ -50,7 +50,7 @@
             <h1 class="catalog__heading">Catalog</h1>
             <a th:each="p : ${ products }"
                class="catalog__item"
-               th:href="@{${'http://localhost:8080/app/product?id=' + p.id }}"
+               th:href="@{${'/product?id=' + p.id }}"
                th:text="${ p.title }" ></a>
         </div>
     </div>
