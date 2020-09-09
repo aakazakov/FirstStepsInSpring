@@ -40,6 +40,28 @@
             text-decoration: none;
             font-size: large;
         }
+        
+        .form {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form__heading,
+        .form__input {
+            font-size: large;
+            margin-bottom: 0.5rem;
+        }
+
+        .form__input {
+            padding: 0.2rem;
+        }
+
+        .form__btn {
+            padding: 0.5rem 3rem;
+            font-size: large;
+        } 
     </style>
 </head>
 
@@ -50,9 +72,24 @@
             <h1 class="catalog__heading">Catalog</h1>
             <a th:each="p : ${ products }"
                class="catalog__item"
-               th:href="@{'/product'(id=${ p.id })}"
+               th:href="@{ '/product'(id=${ p.id }) }"
                th:text="${ p.title }" ></a>
         </div>
+        
+        <!-- FIXME Failed to complete request:
+         org.thymeleaf.exceptions.TemplateProcessingException:
+          Error during execution of processor
+           'org.thymeleaf.spring5.processor.SpringInputGeneralFieldTagProcessor'
+            (template: "catalog" - line 83, col 32) -->
+        <form class="form"
+         th:action="@{ /products/(action='add') }"
+         th:object="${ product }"
+         method="post">
+            <h4 class="form__heading">Add Product</h4>
+            <input type="text" th:field="*{ title }" class="form__input" placeholder="title" />
+            <input type="number" th:field="*{ cost } " class="form__input" placeholder="cost" />
+            <button class="form__btn" type="submit">Add</button>
+        </form>
     </div>
 </body>
 </html>

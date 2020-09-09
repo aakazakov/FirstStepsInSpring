@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.learnspring.firstwebapp.entities.Product;
@@ -27,4 +28,9 @@ public class CatalogController {
     return "catalog";
   }
   
+  @PostMapping
+  public String addNewProduct(Product product) {
+    service.save(product);
+    return "redirect:/catalog/";
+  }
 }
