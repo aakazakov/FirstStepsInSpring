@@ -39,6 +39,7 @@
             padding: 1rem;
             text-decoration: none;
             font-size: large;
+            display: inline-block;
         }
     </style>
 </head>
@@ -48,10 +49,10 @@
        <a class="back-link" href="http://localhost:8080/app/catalog">Back to catalog</a>
          <div class="product">
              <img src="https://picsum.photos/150" alt="product image">
-             <h2 class="product__title">Lorem, ipsum dolor.</h2>
+             <h2 th:text="${ product.title }" class="product__title"></h2>
              <p class="product__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At, commodi?</p>
-             <p class="product__price">Price: <span class="price-value">100</span></p>
-             <p class="product__id">id: <span class="id-value">1</span></p>
+             <p class="product__price">Cost: <span th:text="${ product.cost }" class="price-value"></span></p>
+             <p class="product__id">id: <span th:text="${ product.id }" class="id-value"></span></p>
          </div>
    </div>
 </body>
