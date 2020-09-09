@@ -1,5 +1,6 @@
 package com.learnspring.firstwebapp.service;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -21,7 +22,9 @@ public class ProductService {
   }
   
   public List<Product> getAll() {
-    return repo.getAll();
+    List<Product> all = repo.getAll();
+    all.sort(Comparator.comparingLong(Product::getId));
+    return all;
   }
   
   public Product save(Product p) {
