@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,12 +40,7 @@
 <body>
     <div class="product-box">
         <div class="product">
-            <img src="https://picsum.photos/150" alt="product image">
-            <h2 class="product__title">Lorem, ipsum dolor.</h2>
-            <p class="product__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At, commodi?</p>
-            <p class="product__price">Price: <span class="price-value">100</span></p>
-        </div>
-        <div class="product">
+            <h1 th:text="${msg}"></h1>
             <img src="https://picsum.photos/150" alt="product image">
             <h2 class="product__title">Lorem, ipsum dolor.</h2>
             <p class="product__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At, commodi?</p>
