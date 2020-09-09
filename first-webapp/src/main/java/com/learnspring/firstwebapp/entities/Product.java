@@ -4,15 +4,15 @@ import java.util.Objects;
 
 public class Product {
 
-  private long id;
+  private Long id;
   private String title;
-  private double cost;
+  private Double cost;
 
-  public long getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -24,11 +24,11 @@ public class Product {
     this.title = title;
   }
 
-  public double getCost() {
+  public Double getCost() {
     return cost;
   }
 
-  public void setCost(double cost) {
+  public void setCost(Double cost) {
     this.cost = cost;
   }
 
@@ -38,7 +38,7 @@ public class Product {
     this.cost = 0.0;
   }
 
-  public Product(long id, String title, double cost) {
+  public Product(Long id, String title, Double cost) {
     this.id = id;
     this.title = title;
     this.cost = cost;
@@ -54,7 +54,7 @@ public class Product {
     if (this == obj) return true;
     if (obj == null || obj.getClass() != this.getClass()) return false;
     Product p = (Product) obj;
-    return p.id == id && Objects.equals(p.title, title) && p.cost == cost;
+    return Objects.equals(p.id, id) && Objects.equals(p.title, title) && Objects.equals(p.cost, cost);
   }
 
   @Override
