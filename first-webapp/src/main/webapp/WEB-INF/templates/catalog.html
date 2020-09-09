@@ -3,48 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>main</title>
+    <title>Catalog</title>
     <style>
         * {
             margin: 0;
             padding: 0;
         }
 
-        .product-box {
-            display: flex;
+        .container {
             max-width: 960px;
-            padding: 1rem;
             margin: 0 auto;
-            flex-wrap: wrap;
+            padding-top: 1rem;
         }
 
-        .product {
-            width: 150px;
-            padding: 5px;
-            text-align: center;
-            border: 1px solid blue;
+        .catalog {
+            display: flex;
+            flex-direction: column;           
+            padding: 1rem;
+        }
+        
+        .catalog__heading {
+            margin: auto auto 1rem;
+        }
+        
+        .catalog__item {
+            padding: 0.1rem 0.3rem;
+            text-decoration: none;
+            font-size: larger;
+            margin-bottom: 2px;
             background-color: aliceblue;
-            margin-right: 15px;
         }
 
-        .product__desc,
-        .product__price {
-            margin-top: 5px;
-        }
-
-        .price-value {
-            font-weight: bold;
+        .back-link {
+            padding: 1rem;
+            text-decoration: none;
+            font-size: large;
         }
     </style>
 </head>
+
 <body>
-    <div class="product-box">
-        <div class="product">
-            <h1 th:text="${msg}"></h1>
-            <img src="https://picsum.photos/150" alt="product image">
-            <h2 class="product__title">Lorem, ipsum dolor.</h2>
-            <p class="product__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At, commodi?</p>
-            <p class="product__price">Price: <span class="price-value">100</span></p>
+    <div class="container">
+        <a class="back-link" href="http://localhost:8080/app">Back to main page</a>
+        <div class="catalog">
+            <h1 class="catalog__heading">Catalog</h1>
+            <a th:each="p : ${ products }"
+               th:text="${ p.title }" 
+               class="catalog__item"
+               href="http://localhost:8080/app/product?id={ p.id }"></a>
         </div>
     </div>
 </body>
