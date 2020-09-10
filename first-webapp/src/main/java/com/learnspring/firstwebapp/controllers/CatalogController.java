@@ -39,9 +39,23 @@ public class CatalogController {
     return "redirect:/catalog/";
   }
   
-  @PostMapping
-  public String addNewProduct(Product product) {
-    service.save(product);
+  @PostMapping(params = {"action", "title", "cost"})
+  public String addNewProduct(
+      @RequestParam(name = "action") String action,
+      @RequestParam(name = "title") String title,
+      @RequestParam(name = "cost") String cost) {
+    if (action.equals("add")) {
+      try {
+        Double costValue = Double.parseDouble(cost.trim());
+        Product p = new Product();
+        p.setTitle(title);
+        p.setCost(costValue);
+        service.save(p);
+      } catch (NumberFormatException e) {
+        throw new RuntimeException("the input value is not a number: " + cost);
+      }
+    }   
     return "redirect:/catalog/";
   }
+  
 }
