@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.learnspring.firstwebapp.entities.Product;
 import com.learnspring.firstwebapp.service.ProductService;
@@ -26,6 +27,16 @@ public class CatalogController {
     List<Product> products = service.getAll();
     model.addAttribute("products", products);
     return "catalog";
+  }
+  
+  @GetMapping(params = {"id", "action"})
+  public String action(Model model,
+      @RequestParam(name = "id") Long id,
+      @RequestParam(name = "action") String action) {
+    if (action.equals("remove")) {
+      service.remove(id);
+    }
+    return "redirect:/catalog/";
   }
   
   @PostMapping

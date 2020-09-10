@@ -20,6 +20,7 @@
             display: flex;
             flex-direction: column;           
             padding: 1rem;
+            align-items: center;
         }
         
         .catalog__heading {
@@ -32,7 +33,12 @@
             font-size: larger;
             margin-bottom: 2px;
             background-color: aliceblue;
-            text-align: center;
+            max-width: 10rem;
+        }
+        
+        .catalog__link {
+            padding: 0.1rem 0.3rem;
+            text-decoration: none;
         }
 
         .back-link {
@@ -70,17 +76,20 @@
         <a class="back-link" th:href="@{/}">Back to main page</a>
         <div class="catalog">
             <h1 class="catalog__heading">Catalog</h1>
-            <a th:each="p : ${ products }"
-               class="catalog__item"
-               th:href="@{ '/product'(id=${ p.id }) }"
-               th:text="${ p.title }" ></a>
+            <div th:each="p : ${ products }" class="catalog__item">
+		            <a class="catalog__link"
+			             th:href="@{ '/product'(id=${ p.id }) }"
+			             th:text="${ p.title }" ></a>		            
+		            <a class="catalog__link"
+		               th:href="@{ '/catalog'(id=${ p.id }, action='remove') }">remove</a>         
+            </div>
         </div>
         
         <!-- FIXME Failed to complete request:
          org.thymeleaf.exceptions.TemplateProcessingException:
           Error during execution of processor
            'org.thymeleaf.spring5.processor.SpringInputGeneralFieldTagProcessor'
-            (template: "catalog" - line 83, col 32) -->
+            (template: "catalog" - line 99, col 32) -->
         <form class="form"
          th:action="@{ /products/(action='add') }"
          th:object="${ product }"
