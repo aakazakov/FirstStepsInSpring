@@ -32,11 +32,7 @@ public class Product {
     this.cost = cost;
   }
 
-  public Product() {
-    this.id = 0L;
-    this.title = null;
-    this.cost = 0.0;
-  }
+  public Product() { }
 
   public Product(Long id, String title, Double cost) {
     this.id = id;
