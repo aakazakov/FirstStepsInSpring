@@ -34,4 +34,10 @@ public class Buyer implements Domain {
     this.name = name;
   }
   
+  public Buyer() { }
+  
+  public Buyer(String name) {
+    this.name = name;
+  }
+  
 }
