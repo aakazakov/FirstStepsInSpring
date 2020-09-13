@@ -8,10 +8,14 @@ public class App {
     
     Administrator admin = new Administrator();
     
-    Buyer buyer = new Buyer();
-    buyer.setName("John");
+    Buyer buyer = new Buyer("John");
+    admin.create(buyer);
     
-    admin.createEntity(buyer);
+    buyer = new Buyer("Mary");
+    admin.save(buyer);
+    
+    buyer = new Buyer("Bill");
+    admin.save(buyer);
     
     admin.close();
     

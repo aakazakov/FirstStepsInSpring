@@ -21,9 +21,15 @@ public class Administrator {
         .createEntityManager();
   }
   
-  public void createEntity(Domain entity) {
+  public void create(Domain entity) {
     em.getTransaction().begin();
     em.persist(entity);
+    em.getTransaction().commit();
+  }
+  
+  public void save(Domain entity) {
+    em.getTransaction().begin();
+    em.merge(entity);
     em.getTransaction().commit();
   }
   
