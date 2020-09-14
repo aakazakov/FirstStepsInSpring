@@ -15,11 +15,9 @@
         <property name="current_session_context_class">thread</property>
         <property name="hibernate.hbm2ddl.auto">create-drop</property>
         
-        <mapping class="com.learnspring.hibernation.domain.Buyer"/>
-        <!--  
+        <mapping class="com.learnspring.hibernation.domain.Buyer"/>  
         <mapping class="com.learnspring.hibernation.domain.Product"/>
         <mapping class="com.learnspring.hibernation.domain.Order"/>
-        -->
 
     </session-factory>
 </hibernate-configuration>

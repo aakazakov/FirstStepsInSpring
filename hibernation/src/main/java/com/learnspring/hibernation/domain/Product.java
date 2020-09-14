@@ -1,9 +1,24 @@
 package com.learnspring.hibernation.domain;
 
-public class Product {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "product_tbl")
+public class Product implements Domain {
   
+  @Id
+  @GeneratedValue
+  @Column(name = "id_fld")
   private Long id;
+  
+  @Column(name = "name_fld")
   private String name;
+  
+  @Column(name = "price_fld")
   private Double price;
   
   public Long getId() {
@@ -27,6 +42,13 @@ public class Product {
   }
   
   public void setPrice(Double price) {
+    this.price = price;
+  }
+  
+  public Product() { }
+  
+  public Product(String name, Double price) {
+    this.name = name;
     this.price = price;
   }
    
