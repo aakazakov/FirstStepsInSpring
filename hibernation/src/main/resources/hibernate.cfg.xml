@@ -17,7 +17,6 @@
         
         <mapping class="com.learnspring.hibernation.domain.Buyer"/>  
         <mapping class="com.learnspring.hibernation.domain.Product"/>
-        <mapping class="com.learnspring.hibernation.domain.Order"/>
 
     </session-factory>
 </hibernate-configuration>

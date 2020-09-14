@@ -1,23 +1,29 @@
 package com.learnspring.hibernation.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.List;
+
+import javax.persistence.*;
 
 @Entity
-@Table(name = "Buyer_tbl")
+@Table(name = "BUYER")
 public class Buyer implements Domain {
   
   @Id
   @GeneratedValue
-  @Column(name = "id_fld")
+  @Column(name = "ID")
   private Long id;
    
-  @Column(name = "name_fld")
+  @Column(name = "NAME")
   private String name;
   
+  @ManyToMany
+  @JoinTable(
+      name = "ORDERS",
+      joinColumns = @JoinColumn(name = "BUYER_ID"),
+      inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID")
+  )
+  private List<Product> products;
+    
   public Long getId() {
     return id;
   }
@@ -34,6 +40,14 @@ public class Buyer implements Domain {
     this.name = name;
   }
   
+  public List<Product> getProducts() {
+    return products;
+  }
+  
+  public void setProducts(List<Product> products) {
+    this.products = products;
+  }
+
   public Buyer() { }
   
   public Buyer(String name) {
