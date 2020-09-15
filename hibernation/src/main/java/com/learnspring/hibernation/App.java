@@ -9,33 +9,20 @@ public class App {
     
     Administrator admin = new Administrator();
     
-    Buyer tom = new Buyer("Tom");
-    admin.create(tom);
-    Buyer john = new Buyer("John");
-    admin.save(john);
-    Buyer mary = new Buyer("Mary");
-    admin.save(mary);
+    admin.create(new Buyer("Tom"));
+    admin.save(new Buyer("John"));
+    admin.save(new Buyer("Mary"));
     
-    Product tea = new Product("Tea", 100.0);
-    admin.create(tea);
-    Product coffee = new Product("Coffee", 150.0);
-    admin.save(coffee);
-    Product orangeJuce = new Product("Orange juce", 120.0);
-    admin.save(orangeJuce);
-    Product redBull = new Product("Red Bull", 115.0);
-    admin.save(redBull);
-    Product cocaCola = new Product("Coca-Cola", 110.0);
-    admin.save(cocaCola);
-    Product iceCream = new Product("Ice cream", 50.0);
-    admin.save(iceCream);
-    Product cake = new Product("Cake", 70.0);
-    admin.save(cake);
-    Product milk = new Product("Milk", 40.0);
-    admin.save(milk);
-    Product water = new Product("Water", 10.0);
-    admin.save(water);
-    Product chocolate = new Product("Chocolate", 10.0);
-    admin.save(chocolate);
+    admin.create(new Product("Tea", 100.0));
+    admin.save(new Product("Coffee", 150.0));
+    admin.save(new Product("Orange juce", 120.0));
+    admin.save(new Product("Red Bull", 115.0));
+    admin.save(new Product("Coca-Cola", 110.0));
+    admin.save(new Product("Ice cream", 50.0));
+    admin.save(new Product("Cake", 70.0));
+    admin.save(new Product("Milk", 40.0));
+    admin.save(new Product("Water", 10.0));
+    admin.save(new Product("Chocolate", 10.0));
     
     // Tom's shopping
     Buyer buyer = admin.read(Buyer.class, 1L);
