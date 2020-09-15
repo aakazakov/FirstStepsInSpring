@@ -72,6 +72,10 @@ public class App {
     product = admin.read(Product.class, 13L);
     buyer.getProducts().add(product);
     admin.save(buyer);
+    
+    admin.displayOrderList(1L);
+    admin.displayOrderList(2L);
+    admin.displayOrderList(3L);
        
     admin.close();
     
