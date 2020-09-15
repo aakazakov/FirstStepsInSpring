@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "BUYER")
-public class Buyer implements Domain {
+public class Buyer {
   
   @Id
   @GeneratedValue

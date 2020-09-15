@@ -4,8 +4,6 @@ import javax.persistence.EntityManager;
 
 import org.hibernate.cfg.Configuration;
 
-import com.learnspring.hibernation.domain.Domain;
-
 public class Administrator {
   
   private EntityManager em;
@@ -21,16 +19,24 @@ public class Administrator {
         .createEntityManager();
   }
   
-  public void create(Domain entity) {
+  public <T> void create(T entity) {
     em.getTransaction().begin();
     em.persist(entity);
     em.getTransaction().commit();
   }
   
-  public void save(Domain entity) {
+  public <T> T save(T entity) {
     em.getTransaction().begin();
-    em.merge(entity);
+    T domain = em.merge(entity);
     em.getTransaction().commit();
+    return domain;
+  }
+  
+  public <T> T read(Class<T> clazz, Long id) {
+    em.getTransaction().begin();
+    T domain = em.find(clazz, id);
+    em.getTransaction().commit();
+    return domain;  
   }
   
   public void close() {
