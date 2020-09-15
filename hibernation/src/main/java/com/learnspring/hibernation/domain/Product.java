@@ -72,7 +72,7 @@ public class Product {
   
   @Override
   public String toString() {
-    return String.format("Class: %s, id: %d, name: %s", this.getClass().getName(), id, name);
+    return String.format("Class: %s, id: %d, name: %s", this.getClass().getSimpleName(), id, name);
   }
    
 }
