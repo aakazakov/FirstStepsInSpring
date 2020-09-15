@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 
 import org.hibernate.cfg.Configuration;
 
+import com.learnspring.hibernation.domain.Buyer;
 import com.learnspring.hibernation.domain.Product;
 
 public class Administrator {
@@ -45,16 +46,34 @@ public class Administrator {
   
   public void displayOrderList(Long buyerId) {
     String query = String.format(
-        "SELECT * FROM product p, buyer_product bp"
+        "SELECT p.id, p.name, p.price FROM product p, buyer_product bp"
         + " WHERE bp.buyer_id = %d AND p.id = bp.product_id",
         buyerId
     );
     @SuppressWarnings("unchecked")
     List<Product> list = em.createNativeQuery(query, Product.class).getResultList();
+    int listSize = list.size();
     for (Product p : list) {
       System.out.println(p);
     }
-    System.out.println("Row count: " + list.size());
+    if (listSize == 0) System.out.println("The buyer id: " + buyerId + " has no purchases");
+    System.out.println("Row count: " + listSize);
+  }
+  
+  public void displayBuyerList(Long productId) {
+    String query = String.format(
+        "SELECT b.id, b.name FROM buyer b, buyer_product bp "
+        + "WHERE b.id = bp.buyer_id AND bp.product_id = %d",
+        productId
+    );
+    @SuppressWarnings("unchecked")
+    List<Buyer> list = em.createNativeQuery(query, Buyer.class).getResultList();
+    int listSize = list.size();
+    for (Buyer p : list) {
+      System.out.println(p);
+    }
+    if (listSize == 0) System.out.println("No one bought the product id: " + productId);
+    System.out.println("Row count: " + listSize);
   }
   
   public void close() {

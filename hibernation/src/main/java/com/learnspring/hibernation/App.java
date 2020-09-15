@@ -73,9 +73,17 @@ public class App {
     buyer.getProducts().add(product);
     admin.save(buyer);
     
+    // orders
     admin.displayOrderList(1L);
     admin.displayOrderList(2L);
     admin.displayOrderList(3L);
+    
+    // statistics
+    admin.displayBuyerList(13L);
+    admin.displayBuyerList(9L);
+    admin.displayBuyerList(11L);
+    admin.displayBuyerList(7L);
+    admin.displayBuyerList(12L);
        
     admin.close();
     
