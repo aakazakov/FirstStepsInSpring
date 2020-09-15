@@ -37,6 +37,42 @@ public class App {
     Product chocolate = new Product("Chocolate", 10.0);
     admin.save(chocolate);
     
+    // Tom's shopping
+    Buyer buyer = admin.read(Buyer.class, 1L);
+    Product product = admin.read(Product.class, 4L);
+    buyer.getProducts().add(product);
+    product = admin.read(Product.class, 5L);
+    buyer.getProducts().add(product);
+    product = admin.read(Product.class, 6L);
+    buyer.getProducts().add(product);
+    product = admin.read(Product.class, 7L);
+    buyer.getProducts().add(product);
+    product = admin.read(Product.class, 13L);
+    buyer.getProducts().add(product);
+    admin.save(buyer);
+    
+    // John's shopping
+    buyer = admin.read(Buyer.class, 2L);
+    product = admin.read(Product.class, 7L);
+    buyer.getProducts().add(product);
+    product = admin.read(Product.class, 13L);
+    buyer.getProducts().add(product);
+    admin.save(buyer);
+    
+    // Mary's shopping
+    buyer = admin.read(Buyer.class, 3L);
+    product = admin.read(Product.class, 8L);
+    buyer.getProducts().add(product);
+    product = admin.read(Product.class, 9L);
+    buyer.getProducts().add(product);
+    product = admin.read(Product.class, 10L);
+    buyer.getProducts().add(product);
+    product = admin.read(Product.class, 11L);
+    buyer.getProducts().add(product);
+    product = admin.read(Product.class, 13L);
+    buyer.getProducts().add(product);
+    admin.save(buyer);
+       
     admin.close();
     
   }

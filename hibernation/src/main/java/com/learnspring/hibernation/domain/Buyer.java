@@ -1,5 +1,6 @@
 package com.learnspring.hibernation.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -18,7 +19,7 @@ public class Buyer {
   
   @ManyToMany
   @JoinTable(
-      name = "ORDERS",
+      name = "BUYER_PRODUCT",
       joinColumns = @JoinColumn(name = "BUYER_ID"),
       inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID")
   )
@@ -48,10 +49,18 @@ public class Buyer {
     this.products = products;
   }
 
-  public Buyer() { }
+  public Buyer() {
+    products = new ArrayList<>();
+  }
   
   public Buyer(String name) {
+    this();
     this.name = name;
+  }
+
+  @Override
+  public String toString() {
+    return String.format("Class: %s, id: %d, name: %s", this.getClass().getName(), id, name);
   }
   
 }
