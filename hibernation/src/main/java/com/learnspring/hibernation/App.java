@@ -84,6 +84,12 @@ public class App {
     admin.displayBuyerList(11L);
     admin.displayBuyerList(7L);
     admin.displayBuyerList(12L);
+    
+    //delete
+    int del1 = admin.delete(Product.class, 13L);
+    int del2 = admin.delete(Buyer.class, 2L);
+    System.out.println(del1);
+    System.out.println(del2);
        
     admin.close();
     

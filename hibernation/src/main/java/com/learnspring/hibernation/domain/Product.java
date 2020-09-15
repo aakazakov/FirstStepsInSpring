@@ -20,7 +20,7 @@ public class Product {
   @Column(name = "PRICE")
   private Double price;
   
-  @ManyToMany
+  @ManyToMany(cascade = CascadeType.REMOVE)
   @JoinTable(
       name = "BUYER_PRODUCT",
       joinColumns = @JoinColumn(name = "PRODUCT_ID"),

@@ -44,14 +44,23 @@ public class Administrator {
     return domain;  
   }
   
+  public <T> int delete(Class<T> clazz, Long id) {
+    em.getTransaction().begin();
+    String query = "DELETE " +  clazz.getName() + " WHERE id = :id";
+    int deleted = em.createQuery(query)
+                    .setParameter("id", id)
+                    .executeUpdate();
+    em.getTransaction().commit();
+    return deleted;
+  } 
+  
   public void displayOrderList(Long buyerId) {
-    String query = String.format(
-        "SELECT p.id, p.name, p.price FROM product p, buyer_product bp"
-        + " WHERE bp.buyer_id = %d AND p.id = bp.product_id",
-        buyerId
-    );
+    String query = "SELECT p.id, p.name, p.price FROM product p, buyer_product bp"
+        + " WHERE bp.buyer_id = :id AND p.id = bp.product_id";
     @SuppressWarnings("unchecked")
-    List<Product> list = em.createNativeQuery(query, Product.class).getResultList();
+    List<Product> list = em.createNativeQuery(query, Product.class)
+                           .setParameter("id", buyerId)
+                           .getResultList();
     int listSize = list.size();
     for (Product p : list) {
       System.out.println(p);
@@ -61,13 +70,12 @@ public class Administrator {
   }
   
   public void displayBuyerList(Long productId) {
-    String query = String.format(
-        "SELECT b.id, b.name FROM buyer b, buyer_product bp "
-        + "WHERE b.id = bp.buyer_id AND bp.product_id = %d",
-        productId
-    );
+    String query = "SELECT b.id, b.name FROM buyer b, buyer_product bp "
+        + "WHERE b.id = bp.buyer_id AND bp.product_id = :id";
     @SuppressWarnings("unchecked")
-    List<Buyer> list = em.createNativeQuery(query, Buyer.class).getResultList();
+    List<Buyer> list = em.createNativeQuery(query, Buyer.class)
+                         .setParameter("id", productId)
+                         .getResultList();
     int listSize = list.size();
     for (Buyer p : list) {
       System.out.println(p);

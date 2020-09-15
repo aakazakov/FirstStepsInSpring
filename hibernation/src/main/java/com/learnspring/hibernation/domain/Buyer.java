@@ -17,7 +17,7 @@ public class Buyer {
   @Column(name = "NAME")
   private String name;
   
-  @ManyToMany
+  @ManyToMany(cascade = CascadeType.REMOVE)
   @JoinTable(
       name = "BUYER_PRODUCT",
       joinColumns = @JoinColumn(name = "BUYER_ID"),
