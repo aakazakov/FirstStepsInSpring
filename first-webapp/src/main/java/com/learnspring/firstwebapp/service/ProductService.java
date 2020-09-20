@@ -28,6 +28,10 @@ public class ProductService {
     return (ArrayList<Product>) repo.findAll();
   }
   
+  public List<Product> getAllByCost(Double min, Double max) {
+    return (ArrayList<Product>) repo.findAllByCostBetween(max, min);
+  }
+  
   public Product save(Product p) {
     return repo.save(p);
   }
