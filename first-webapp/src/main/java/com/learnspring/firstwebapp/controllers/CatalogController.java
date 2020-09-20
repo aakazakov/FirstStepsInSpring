@@ -1,8 +1,8 @@
 package com.learnspring.firstwebapp.controllers;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,7 +59,7 @@ public class CatalogController {
     return "redirect:/catalog/";
   }
   
-  @GetMapping(params = {"action", "min", "max"})
+  @PostMapping(params = {"action", "min", "max"})
   public String rangeAction(
       Model model,
       @RequestParam(name = "action") String action,
@@ -69,8 +69,12 @@ public class CatalogController {
       try {
         Double minValue = Double.parseDouble(min.trim());
         Double maxValue = Double.parseDouble(max.trim());
-        List<Product> products = service.getAllByCost(minValue, maxValue);
-        model.addAttribute(products);
+//        List<Product> products = service.getAllByCost(minValue, maxValue);
+        List<Product> products = service.getAll()
+            .stream()
+            .filter(p -> p.getCost() <= maxValue && p.getCost() >= minValue)
+            .collect(Collectors.toList());
+        model.addAttribute("products", products);
       } catch (NumberFormatException e) {
         throw new RuntimeException("the input value is not a number"); // Temporary solution...
       }
