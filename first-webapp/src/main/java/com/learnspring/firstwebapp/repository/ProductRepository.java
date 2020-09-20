@@ -1,13 +1,15 @@
 package com.learnspring.firstwebapp.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.learnspring.firstwebapp.domain.Product;
 
 @Repository
-public interface ProductRepository extends CrudRepository<Product, Long> {
+public interface ProductRepository extends JpaRepository<Product, Long> {
   
-  Iterable<Product> findAllByCostBetween(Double min, Double max);
+  List<Product> findAllByCostBetween(Double min, Double max);
   
 }
