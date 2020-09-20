@@ -30,7 +30,7 @@ public class CatalogController {
   }
   
   @GetMapping(params = {"id", "action"})
-  public String action(Model model,
+  public String removeAction(Model model,
       @RequestParam(name = "id") Long id,
       @RequestParam(name = "action") String action) {
     if (action.equals("remove")) {
@@ -40,7 +40,7 @@ public class CatalogController {
   }
   
   @PostMapping(params = {"action", "title", "cost"})
-  public String addNewProduct(
+  public String addNewProductAction(
       @RequestParam(name = "action") String action,
       @RequestParam(name = "title") String title,
       @RequestParam(name = "cost") String cost) {
@@ -52,7 +52,7 @@ public class CatalogController {
         p.setCost(costValue);
         service.save(p);
       } catch (NumberFormatException e) {
-        throw new RuntimeException("the input value is not a number: " + cost);
+        throw new RuntimeException("the input value is not a number: " + cost); // Temporary solution...
       }
     }   
     return "redirect:/catalog/";
