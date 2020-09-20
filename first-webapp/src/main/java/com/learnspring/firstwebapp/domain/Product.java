@@ -1,4 +1,4 @@
-package com.learnspring.firstwebapp.entities;
+package com.learnspring.firstwebapp.domain;
 
 import java.util.Objects;
 

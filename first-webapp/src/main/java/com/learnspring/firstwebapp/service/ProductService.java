@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.learnspring.firstwebapp.entities.Product;
+import com.learnspring.firstwebapp.domain.Product;
 import com.learnspring.firstwebapp.repository.ProductRepository;
 
 @Service

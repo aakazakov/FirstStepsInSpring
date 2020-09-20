@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.learnspring.firstwebapp.entities.Product;
+import com.learnspring.firstwebapp.domain.Product;
 
 @Repository
 public class ProductRepository {

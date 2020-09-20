@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.learnspring.firstwebapp.entities.Product;
+import com.learnspring.firstwebapp.domain.Product;
 import com.learnspring.firstwebapp.service.ProductService;
 
 @Controller
