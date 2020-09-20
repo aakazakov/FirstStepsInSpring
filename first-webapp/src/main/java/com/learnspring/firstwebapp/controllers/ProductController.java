@@ -22,9 +22,8 @@ public class ProductController {
   @GetMapping(params = {"id"})
   public String product(Model model, @RequestParam(name = "id") Long id) {
     Product product = service.getOne(id);
-    if (product != null) {
-      model.addAttribute("product", product);
-    }
+    if (product == null) return "redirect:/catalog/";
+    model.addAttribute("product", product);
     return "product";  
   }
 }
