@@ -78,11 +78,11 @@
         <a class="back-link" th:href="@{/}">Back to main page</a>
         <div class="catalog">
             <form class="form"
-            th:action="@{ '/catalog'(action='range') }"
-            method="get">
+            th:action="@{ /catalog(action='range') }"
+            method="post">
                <h4 class="form__heading">Range products</h4>
-               <input type="text" name="min" class="form__input" placeholder="min price value" />
-               <input type="text" name="max" class="form__input" placeholder="max price value" />
+               <input type="text" th:name="min" class="form__input" placeholder="min price value" />
+               <input type="text" th:name="max" class="form__input" placeholder="max price value" />
                <button class="form__btn" type="submit">Submit</button>
            </form>
             <h1 class="catalog__heading">Catalog</h1>
@@ -95,11 +95,11 @@
             </div>
         </div>   
         <form class="form"
-         th:action="@{ '/catalog'(action='add') }"
+         th:action="@{ /catalog(action='add') }"
          method="post">
             <h4 class="form__heading">Add Product</h4>
-            <input type="text" name="title" class="form__input" placeholder="title" />
-            <input type="text" name="cost" class="form__input" placeholder="cost" />
+            <input type="text" th:name="title" class="form__input" placeholder="title" />
+            <input type="text" th:name="cost" class="form__input" placeholder="cost" />
             <button class="form__btn" type="submit">Add</button>
         </form>
     </div>
