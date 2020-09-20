@@ -1,6 +1,5 @@
 package com.learnspring.firstwebapp.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,11 +24,11 @@ public class ProductService {
   }
   
   public List<Product> getAll() {
-    return (ArrayList<Product>) repo.findAll();
+    return repo.findAll();
   }
   
   public List<Product> getAllByCost(Double min, Double max) {
-    return (ArrayList<Product>) repo.findAllByCostBetween(max, min);
+    return repo.findAllByCostBetween(max, min);
   }
   
   public Product save(Product p) {
