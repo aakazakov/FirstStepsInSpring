@@ -34,7 +34,7 @@ public class DataSourceConfig {
     LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
     factory.setDataSource(getDataSource());
     factory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-    factory.setPackagesToScan("com.learnspring.firstwebapp.entities");
+    factory.setPackagesToScan("com.learnspring.firstwebapp.domain");
     factory.setJpaProperties(getJpaProperties());
     return factory;
   }
