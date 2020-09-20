@@ -69,11 +69,7 @@ public class CatalogController {
       try {
         Double minValue = Double.parseDouble(min.trim());
         Double maxValue = Double.parseDouble(max.trim());
-//        List<Product> products = service.getAllByCost(minValue, maxValue);
-        List<Product> products = service.getAll()
-            .stream()
-            .filter(p -> p.getCost() <= maxValue && p.getCost() >= minValue)
-            .collect(Collectors.toList());
+        List<Product> products = service.getAllByCost(minValue, maxValue);
         model.addAttribute("products", products);
       } catch (NumberFormatException e) {
         throw new RuntimeException("the input value is not a number"); // Temporary solution...

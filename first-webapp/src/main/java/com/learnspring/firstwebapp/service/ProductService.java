@@ -28,7 +28,7 @@ public class ProductService {
   }
   
   public List<Product> getAllByCost(Double min, Double max) {
-    return repo.findAllByCostBetween(max, min);
+    return repo.findAllByCostBetween(min, max);
   }
   
   public Product save(Product p) {
