@@ -1,5 +1,6 @@
 package com.learnspring.firstwebapp.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -17,6 +18,10 @@ public class CacheStorage {
   
   public List<Product> getCache() {
     return cache;
+  }
+  
+  public CacheStorage() {
+    cache = new ArrayList<>();
   }
   
   public void cleanCache() {
@@ -42,7 +47,7 @@ public class CacheStorage {
   } 
   
   public int cacheSize() {
-    return cache == null ? 0 : cache.size();
+    return cache.size();
   }
   
 }
