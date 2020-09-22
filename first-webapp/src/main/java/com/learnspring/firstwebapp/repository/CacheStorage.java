@@ -42,9 +42,11 @@ public class CacheStorage {
     }
   }
   
-  public List<Product> getSomeOfTheCache(int start, int end) {
-    return cache.subList(start, end);
-  } 
+  public List<Product> getSomeOfTheCache(int edge) {
+    int cacheSize = cacheSize();
+    if (edge > cacheSize) edge = cacheSize;
+    return cache.subList(cacheSize - edge, cacheSize);
+  }
   
   public int cacheSize() {
     return cache.size();

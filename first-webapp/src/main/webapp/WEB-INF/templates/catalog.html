@@ -93,6 +93,7 @@
 		            <a class="catalog__link"
 		               th:href="@{ '/catalog'(id=${ p.id }, action='remove') }">remove</a>
             </div>
+            <a th:href="@{ /catalog?(param='more') }" >Get More</a>
         </div>   
         <form class="form"
          th:action="@{ /catalog(action='add') }"

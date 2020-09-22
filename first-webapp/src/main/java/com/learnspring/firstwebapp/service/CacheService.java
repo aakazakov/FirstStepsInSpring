@@ -16,8 +16,8 @@ public class CacheService {
   
   public CacheService(CacheStorage cache) {
     this.cache = cache;
-    this.edge = 0;
     this.step = 4;
+    this.edge = step;
   }
 
   public Product add(Product p) {
@@ -33,14 +33,24 @@ public class CacheService {
   }
   
   public List<Product> getPart() {
-    increment();
-    return cache.getSomeOfTheCache(0, edge);
+    return cache.getSomeOfTheCache(edge);
   }
   
-  private void increment() {
+  public boolean cacheIsEmpty() {
+    return cache.cacheSize() == 0;
+  }
+  
+  public void setCache(List<Product> list) {
+    cache.setCache(list);
+  }
+  
+  public void cleanCache() {
+    this.edge = step;
+    cache.cleanCache();
+  }
+  
+  public void expandDisplayedList() {
     edge += step;
-    int cacheSize = cache.cacheSize();
-    if (edge > cacheSize) edge = cacheSize;
   }
   
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.learnspring.firstwebapp.domain.Product;
+import com.learnspring.firstwebapp.service.CacheService;
 import com.learnspring.firstwebapp.service.ProductService;
 
 @Controller
@@ -17,14 +18,22 @@ import com.learnspring.firstwebapp.service.ProductService;
 public class CatalogController {
   
   private final ProductService service;
+  private final CacheService cacheService;
   
-  public CatalogController(ProductService service) {
+  public CatalogController(ProductService service, CacheService cacheService) {
     this.service = service;
+    this.cacheService = cacheService;
   }
   
   @GetMapping
   public String catalog(Model model) {
-    List<Product> products = service.getAll();
+    if (cacheService.cacheIsEmpty()) {
+      cacheService.setCache(service.getAll());
+    }
+    List<Product> products = cacheService.getPart();
+    
+    if (products.isEmpty()) throw new RuntimeException("EMPTY CACHE");
+    
     model.addAttribute("products", products);
     return "catalog";
   }
@@ -68,13 +77,22 @@ public class CatalogController {
       try {
         Double minValue = Double.parseDouble(min.trim());
         Double maxValue = Double.parseDouble(max.trim());
-        List<Product> products = service.getAllByCost(minValue, maxValue);
+        cacheService.setCache(service.getAllByCost(minValue, maxValue));
+        List<Product> products = cacheService.getPart();
         model.addAttribute("products", products);
       } catch (NumberFormatException e) {
         throw new RuntimeException("the input value is not a number"); // Temporary solution...
       }
     }
     return "catalog";
+  }
+  
+  @GetMapping(params = "param")
+  public String more(Model model, @RequestParam(name = "param") String param) {
+    if (param.equals("more")) {
+      cacheService.expandDisplayedList();
+    }
+    return "redirect:/catalog/";
   }
   
 }
