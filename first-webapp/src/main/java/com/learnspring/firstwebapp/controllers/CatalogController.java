@@ -30,10 +30,7 @@ public class CatalogController {
     if (cacheService.cacheIsEmpty()) {
       cacheService.setCache(service.getAll());
     }
-    List<Product> products = cacheService.getPart();
-    
-    if (products.isEmpty()) throw new RuntimeException("EMPTY CACHE");
-    
+    List<Product> products = cacheService.getPart();  
     model.addAttribute("products", products);
     return "catalog";
   }
