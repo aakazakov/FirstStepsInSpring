@@ -1,13 +1,19 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /app
+    
 spring:
   datasource:
     platform: postgres
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
-    password: password
+    password: password   
   jpa:
-    database: postgresql
-    show-sql: true    hibernate:
-      ddl-auto: validate    properties:      hibernate.dialect: org.hibernate.dialect.PostgreSQL94Dialect
-server:  address: localhost
-  port: 8080  servlet:    context-path: /app
+    database: postgresql    properties:      hibernate.dialect: org.hibernate.dialect.PostgreSQL94Dialect
+      hibernate.max_fetch_depth: 3
+      hibernate.jdbc.fetch_size: 50
+      hibernate.jdbc.batch_size: 10
+      hibernate.show_sql: true
+      hibernate.hbm2ddl.auto: validate
