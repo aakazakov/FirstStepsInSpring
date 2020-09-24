@@ -5,16 +5,16 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.learnspring.firstspringbootapp.domain.Product;
-import com.learnspring.firstspringbootapp.repository.CacheStorage;
+import com.learnspring.firstspringbootapp.repository.CacheStorageImpl;
 
 @Service("cacheService")
 public class CacheService {
   
-  private CacheStorage cache;
+  private CacheStorageImpl cache;
   private int edge;
   private int step;
   
-  public CacheService(CacheStorage cache) {
+  public CacheService(CacheStorageImpl cache) {
     this.cache = cache;
     this.step = 4;
     this.edge = step;
