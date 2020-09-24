@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    platform: postgres
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: password
+  jpa:
+    database: postgresql
+    show-sql: true    hibernate:
+      ddl-auto: validate    properties:      hibernate.dialect: org.hibernate.dialect.PostgreSQL94Dialect
+server:  address: localhost
+  port: 8080  servlet:    context-path: /app
