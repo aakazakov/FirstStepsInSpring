@@ -3,23 +3,30 @@ package com.learnspring.firstsimplerestapi.service;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.learnspring.firstsimplerestapi.dao.ProductDao;
 import com.learnspring.firstsimplerestapi.domain.Product;
 
+@Service
 public class ProductServiceImpl implements ProductService {
   
-  @Autowired
-  private ProductService dao;
+  private ProductDao dao;
+  
+  public  ProductServiceImpl(ProductDao dao) {
+    this.dao = dao;
+  }
+  
+  public ProductServiceImpl() { }
 
   @Override
   public List<Product> getAll() {
-    return dao.getAll();
+    return dao.findAll();
   }
 
   @Override
   public Product getById(Integer id) {
-    return dao.getById(id);
+    return dao.findById(id).orElse(null);
   }
 
   public List<Product> findByExpiredDate(String expired) {
@@ -38,7 +45,7 @@ public class ProductServiceImpl implements ProductService {
 
   @Override
   public void removeById(Integer id) {
-    dao.removeById(id);    
+    dao.deleteById(id);    
   }
 
   @Override
