@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.learnspring.firstsimplerestapi.domain.Product;
-import com.learnspring.firstsimplerestapi.service.ProductServiceImpl;
+import com.learnspring.firstsimplerestapi.service.ProductService;
 
 @RestController
 @RequestMapping("/products")
 public class ProductController {
   
-  private ProductServiceImpl service;
+  private final ProductService service;
   
-  public ProductController(ProductServiceImpl service) {
+  public ProductController(ProductService service) {
     this.service = service;
   }
   

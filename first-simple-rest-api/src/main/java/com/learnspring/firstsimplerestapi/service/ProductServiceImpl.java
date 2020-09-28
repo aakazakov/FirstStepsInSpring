@@ -11,7 +11,7 @@ import com.learnspring.firstsimplerestapi.domain.Product;
 @Service
 public class ProductServiceImpl implements ProductService {
   
-  private ProductDao dao;
+  private final ProductDao dao;
   
   public  ProductServiceImpl(ProductDao dao) {
     this.dao = dao;
@@ -32,6 +32,11 @@ public class ProductServiceImpl implements ProductService {
   }
 
   @Override
+  public List<Product> findByExpiredDate(LocalDate expired) {
+    return dao.findByExpiredDate(expired);
+  }
+  
+  @Override
   public List<Product> findByCostBetween(Double min, Double max) {
     return dao.findByCostBetween(min, max);
   }
@@ -44,11 +49,6 @@ public class ProductServiceImpl implements ProductService {
   @Override
   public void removeById(Integer id) {
     dao.deleteById(id);    
-  }
-
-  @Override
-  public List<Product> findByExpiredDate(LocalDate expired) {
-    return dao.findByExpiredDate(expired);
   }
 
 }
