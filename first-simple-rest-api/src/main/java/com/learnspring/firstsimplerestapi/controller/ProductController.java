@@ -2,8 +2,12 @@ package com.learnspring.firstsimplerestapi.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +23,11 @@ public class ProductController {
   
   public ProductController(ProductService service) {
     this.service = service;
+  }
+  
+  @PostMapping
+  public Product add(@RequestBody Product p) {
+    return service.save(p);
   }
   
   @GetMapping
@@ -41,6 +50,17 @@ public class ProductController {
       @RequestParam(name = "min") Double min,
       @RequestParam(name = "max") Double max) {
     return service.findByCostBetween(min, max);
+  }
+  
+  @PutMapping("/{id}")
+  public Product update(@PathVariable(name = "id") Integer id, @RequestBody Product p) {
+    p.setId(id);
+    return service.save(p);
+  }
+  
+  @DeleteMapping("/{id}")
+  public void deleteById(@PathVariable(name = "id") Integer id) {
+    service.removeById(id);
   }
   
 }

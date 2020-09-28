@@ -49,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
 
   @Override
   public void removeById(Integer id) {
-    dao.deleteById(id);    
+    dao.deleteById(id);
   }
 
 }
