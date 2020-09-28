@@ -11,11 +11,13 @@ public interface ProductService {
   
   void removeById(Integer id);
   
-  List<Product> getAll();
+  List<Product> findAll();
   
-  Product getById(Integer id);
+  Product findById(Integer id);
   
-  List<Product> findByExpiredDate(LocalDate expired);
+  List<Product> findByExpiredDateLessThanEqual(LocalDate expiredDate);
+  
+  List<Product> findByExpiredDateLessThanEqual(String expiredDate);
   
   List<Product> findByCostBetween(Double min, Double max);
   

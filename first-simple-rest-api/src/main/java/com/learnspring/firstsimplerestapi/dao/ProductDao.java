@@ -9,8 +9,8 @@ import com.learnspring.firstsimplerestapi.domain.Product;
 
 public interface ProductDao extends JpaRepository<Product, Integer> {
   
-  List<Product> findByExpiredDate(LocalDate expiredDate);
+  List<Product> findByExpiredDateLessThanEqual(LocalDate expiredDate);
   
-  List<Product> findByCostBetween(Double min, Double max); 
+  List<Product> findByCostBetween(Double min, Double max);
 
 }

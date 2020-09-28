@@ -18,22 +18,23 @@ public class ProductServiceImpl implements ProductService {
   }
 
   @Override
-  public List<Product> getAll() {
+  public List<Product> findAll() {
     return dao.findAll();
   }
 
   @Override
-  public Product getById(Integer id) {
+  public Product findById(Integer id) {
     return dao.findById(id).orElse(null);
   }
 
-  public List<Product> findByExpiredDate(String expired) {
-    return dao.findByExpiredDate(LocalDate.parse(expired));
-  }
-
   @Override
-  public List<Product> findByExpiredDate(LocalDate expired) {
-    return dao.findByExpiredDate(expired);
+  public List<Product> findByExpiredDateLessThanEqual(String expiredDate) {
+    return dao.findByExpiredDateLessThanEqual(LocalDate.parse(expiredDate));
+  }
+  
+  @Override
+  public List<Product> findByExpiredDateLessThanEqual(LocalDate expiredDate) {
+    return dao.findByExpiredDateLessThanEqual(expiredDate);
   }
   
   @Override
