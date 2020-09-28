@@ -16,8 +16,6 @@ public class ProductServiceImpl implements ProductService {
   public  ProductServiceImpl(ProductDao dao) {
     this.dao = dao;
   }
-  
-  public ProductServiceImpl() { }
 
   @Override
   public List<Product> getAll() {
