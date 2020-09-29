@@ -4,37 +4,37 @@ public class EntityNotFoundException extends RuntimeException {
   
   private static final long serialVersionUID = 1L;
   
-  private final Integer id;
   private final String title;
-  
-  public Integer getId() {
-    return id;
-  }
+  private final Integer id;
   
   public String getTitle() {
     return title;
   }
   
+  public Integer getId() {
+    return id;
+  }
+  
   public EntityNotFoundException(String title, Integer id) {
-    this.id = id;
     this.title = title;
+    this.id = id;
   }
   
   public EntityNotFoundException(String title, Integer id, String message) {
     super(message);
-    this.id = id;
     this.title = title;
+    this.id = id;
   }
   
   public EntityNotFoundException(String message) {
     super(message);
-    this.id = -0;
     this.title = "";
+    this.id = -777;
   }
   
   public EntityNotFoundException() {
-    this.id = -0;
     this.title = "";
+    this.id = -777;
   }
  
   @Override
