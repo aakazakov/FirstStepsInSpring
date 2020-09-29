@@ -21,4 +21,6 @@ public interface ProductService {
   
   List<ProductDto> findByCostBetween(Double min, Double max);
   
+  boolean existsById(Integer id);
+  
 }

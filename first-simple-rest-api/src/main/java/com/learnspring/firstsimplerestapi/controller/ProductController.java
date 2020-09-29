@@ -35,6 +35,7 @@ public class ProductController {
   
   @GetMapping("/{id}")
   public ProductDto getOne(@PathVariable(name = "id") Integer id) {
+    checkId(id);
     return service.findById(id);
   }
   
@@ -52,13 +53,21 @@ public class ProductController {
   
   @PutMapping("/{id}")
   public ProductDto update(@PathVariable(name = "id") Integer id, @RequestBody ProductDto dto) {
+    checkId(id);
     dto.setId(id);
     return service.save(dto);
   }
   
   @DeleteMapping("/{id}")
   public void deleteById(@PathVariable(name = "id") Integer id) {
+    checkId(id);
     service.removeById(id);
+  }
+  
+  private void checkId(@PathVariable Integer id) {
+    if (!service.existsById(id)) {
+      throw new EntityNotFoundException("non-existent", id);
+    }
   }
   
   @ExceptionHandler
