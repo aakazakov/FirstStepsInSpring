@@ -1,10 +1,16 @@
 package com.learnspring.firstsimplerestapi.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.learnspring.firstsimplerestapi.dto.EntityNotFoundResponse;
 import com.learnspring.firstsimplerestapi.dto.ProductDto;
+import com.learnspring.firstsimplerestapi.exception.EntityNotFoundException;
 import com.learnspring.firstsimplerestapi.service.ProductService;
 
 @RestController
@@ -53,6 +59,19 @@ public class ProductController {
   @DeleteMapping("/{id}")
   public void deleteById(@PathVariable(name = "id") Integer id) {
     service.removeById(id);
+  }
+  
+  @ExceptionHandler
+  public ResponseEntity<EntityNotFoundResponse> exceptionHandler(EntityNotFoundException e) {
+    EntityNotFoundResponse response = new EntityNotFoundResponse();
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    response.setStatus(HttpStatus.NOT_FOUND.value());
+    response.setTimestamp(System.currentTimeMillis());
+    response.setDateTime(dtf.format(LocalDateTime.now()));
+    response.setMessage(e.getMessage());
+    response.setEntityId(e.getId());
+    response.setEntityTitle(e.getTitle());
+    return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
   }
   
 }

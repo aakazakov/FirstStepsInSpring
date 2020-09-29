@@ -4,9 +4,10 @@ public class EntityNotFoundResponse {
 
   private int status;
   private Long timestamp;
+  private String dateTime;
   private String message;
   private Integer entityId;
-  private String entityName;
+  private String entityTitle;
   
   public int getStatus() {
     return status;
@@ -24,6 +25,14 @@ public class EntityNotFoundResponse {
     this.timestamp = timestamp;
   }
   
+  public String getDateTime() {
+    return dateTime;
+  }
+  
+  public void setDateTime(String dateTime) {
+    this.dateTime = dateTime;
+  }
+    
   public String getMessage() {
     return message;
   }
@@ -40,12 +49,12 @@ public class EntityNotFoundResponse {
     this.entityId = entityId;
   }
   
-  public String getEntityName() {
-    return entityName;
+  public String getEntityTitle() {
+    return entityTitle;
   }
   
-  public void setEntityName(String entityName) {
-    this.entityName = entityName;
+  public void setEntityTitle(String entityTitle) {
+    this.entityTitle = entityTitle;
   }
   
 }
