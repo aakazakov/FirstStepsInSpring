@@ -3,22 +3,22 @@ package com.learnspring.firstsimplerestapi.service;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.learnspring.firstsimplerestapi.domain.Product;
+import com.learnspring.firstsimplerestapi.dto.ProductDto;
 
 public interface ProductService {
   
-  Product save(Product p);
+  ProductDto save(ProductDto dto);
   
   void removeById(Integer id);
   
-  List<Product> findAll();
+  List<ProductDto> findAll();
   
-  Product findById(Integer id);
+  ProductDto findById(Integer id);
   
-  List<Product> findByExpiredDateLessThanEqual(LocalDate expiredDate);
+  List<ProductDto> findByExpiredDateLessThanEqual(LocalDate expiredDate);
   
-  List<Product> findByExpiredDateLessThanEqual(String expiredDate);
+  List<ProductDto> findByExpiredDateLessThanEqual(String expiredDate);
   
-  List<Product> findByCostBetween(Double min, Double max);
+  List<ProductDto> findByCostBetween(Double min, Double max);
   
 }

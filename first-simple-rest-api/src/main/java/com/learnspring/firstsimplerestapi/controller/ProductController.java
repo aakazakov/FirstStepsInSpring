@@ -2,17 +2,9 @@ package com.learnspring.firstsimplerestapi.controller;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.learnspring.firstsimplerestapi.domain.Product;
+import com.learnspring.firstsimplerestapi.dto.ProductDto;
 import com.learnspring.firstsimplerestapi.service.ProductService;
 
 @RestController
@@ -26,36 +18,36 @@ public class ProductController {
   }
   
   @PostMapping
-  public Product add(@RequestBody Product p) {
-    return service.save(p);
+  public ProductDto add(@RequestBody ProductDto dto) {
+    return service.save(dto);
   }
   
   @GetMapping
-  public List<Product> getAll() {
+  public List<ProductDto> getAll() {
     return service.findAll();
   }
   
   @GetMapping("/{id}")
-  public Product getOne(@PathVariable(name = "id") Integer id) {
+  public ProductDto getOne(@PathVariable(name = "id") Integer id) {
     return service.findById(id);
   }
   
   @GetMapping(params = "exp")
-  public List<Product> getByExpiredDate(@RequestParam(name = "exp") String expiredDate) {
+  public List<ProductDto> getByExpiredDate(@RequestParam(name = "exp") String expiredDate) {
     return service.findByExpiredDateLessThanEqual(expiredDate);
   }
   
   @GetMapping(params = {"min", "max"})
-  public List<Product> getByCost(
+  public List<ProductDto> getByCost(
       @RequestParam(name = "min") Double min,
       @RequestParam(name = "max") Double max) {
     return service.findByCostBetween(min, max);
   }
   
   @PutMapping("/{id}")
-  public Product update(@PathVariable(name = "id") Integer id, @RequestBody Product p) {
-    p.setId(id);
-    return service.save(p);
+  public ProductDto update(@PathVariable(name = "id") Integer id, @RequestBody ProductDto dto) {
+    dto.setId(id);
+    return service.save(dto);
   }
   
   @DeleteMapping("/{id}")

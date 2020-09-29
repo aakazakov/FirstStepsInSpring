@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.learnspring.firstsimplerestapi.dao.ProductDao;
 import com.learnspring.firstsimplerestapi.domain.Product;
+import com.learnspring.firstsimplerestapi.dto.ProductDto;
+import com.learnspring.firstsimplerestapi.mapper.ProductMapper;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -18,33 +20,36 @@ public class ProductServiceImpl implements ProductService {
   }
 
   @Override
-  public List<Product> findAll() {
-    return dao.findAll();
+  public List<ProductDto> findAll() {
+    return ProductMapper.MAPPER.fromProductList(dao.findAll());
   }
 
   @Override
-  public Product findById(Integer id) {
-    return dao.findById(id).orElse(null);
+  public ProductDto findById(Integer id) {
+    return ProductMapper.MAPPER.fromProduct(dao.findById(id).orElse(null));
   }
 
   @Override
-  public List<Product> findByExpiredDateLessThanEqual(String expiredDate) {
-    return dao.findByExpiredDateLessThanEqual(LocalDate.parse(expiredDate));
+  public List<ProductDto> findByExpiredDateLessThanEqual(String expiredDate) {
+    return ProductMapper.MAPPER
+        .fromProductList(dao.findByExpiredDateLessThanEqual(LocalDate.parse(expiredDate)));
   }
   
   @Override
-  public List<Product> findByExpiredDateLessThanEqual(LocalDate expiredDate) {
-    return dao.findByExpiredDateLessThanEqual(expiredDate);
+  public List<ProductDto> findByExpiredDateLessThanEqual(LocalDate expiredDate) {
+    return ProductMapper.MAPPER
+        .fromProductList(dao.findByExpiredDateLessThanEqual(expiredDate));
   }
   
   @Override
-  public List<Product> findByCostBetween(Double min, Double max) {
-    return dao.findByCostBetween(min, max);
+  public List<ProductDto> findByCostBetween(Double min, Double max) {
+    return ProductMapper.MAPPER.fromProductList(dao.findByCostBetween(min, max));
   }
 
   @Override
-  public Product save(Product p) {
-    return dao.save(p);
+  public ProductDto save(ProductDto dto) {
+    Product p = ProductMapper.MAPPER.toProduct(dto);
+    return ProductMapper.MAPPER.fromProduct(dao.save(p));
   }
 
   @Override
