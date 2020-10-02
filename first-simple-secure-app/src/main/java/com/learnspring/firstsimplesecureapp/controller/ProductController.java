@@ -53,9 +53,28 @@ public class ProductController {
       Model model,
       @RequestParam(name = "title") String title,
       @RequestParam(name = "cost") Double cost) {
-    Product p = new Product(title, cost);
-    service.save(p);
+    if (!title.isEmpty() && cost != null) {
+      Product p = new Product(title.trim(), cost);
+      service.save(p);      
+    }
     return "redirect:/catalog/";
+  }
+  
+  @PostMapping(path = "/{id}", params = {"title", "cost"})
+  public String edit(
+      Model model,
+      @PathVariable(name = "id") Integer id,
+      @RequestParam(name = "title", required = false) String title,
+      @RequestParam(name = "cost", required = false) Double cost) {
+    Product p = service.getOne(id);
+    p.setId(id);
+    if (title != null)
+      p.setTitle(title.trim());
+    if (cost != null)
+      p.setCost(cost);
+    service.save(p);
+    model.addAttribute("product", p);
+    return "product";
   }
 
 }
