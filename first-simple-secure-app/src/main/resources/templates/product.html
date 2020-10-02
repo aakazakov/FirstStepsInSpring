@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -60,18 +60,20 @@
 </head>
 <body>
     <div class="product container">
-        <a href="#" class="backlink">Back to Catalog</a>
+        <a href="#" class="backlink" th:href="@{ /catalog }">Back to Catalog</a>
         <div class="product__data">
             <img class="product__img"
             src="https://via.placeholder.com/200/00FFCC/FFFFFF?text=product" alt="product image">
-            <h3 class="product__title">product title</h3>
-            <p class="product__id">Id: <span class="product__id-value">000</span></p>
+            <h3 class="product__title" th:text="${ product.title }">product title</h3>
+            <p class="product__id">Id: <span class="product__id-value" th:text="${ product.id }">000</span></p>
             <p class="product__desc">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto, libero?<p/>
-            <p class="product__cost">Cost: <span class="product__cost-value">0</span><p/>
+            <p class="product__cost">Cost: <span class="product__cost-value" th:text="${ product.cost }">0</span><p/>
         </div>
-        <form action="#" class="product__edit-form">
-            <input class="form-input" type="text" placeholder="new title" >
-            <input class="form-input" type="text" placeholder="new cost" >
+        <form action="#" class="product__edit-form"
+        th:method="post"
+        th:action="@{ '/catalog/' + ${ product.id } }">
+            <input class="form-input" type="text" placeholder="new title" th:name=title>
+            <input class="form-input" type="text" placeholder="new cost" th:name=cost>
             <button class="form-btn" type="submit">Edit</button>
         </form>
     </div>
