@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: 0 auto;
+        }
+
+        .catalog {
+            margin-top: 1rem;
+            max-width: 960px;
+        }
+
+        .product__box {
+            max-width: 480px;
+            padding-bottom: 2rem;
+        }
+
+        .catalog__item {
+            display: flex;
+            justify-content: space-between;
+            font-size: larger;
+            padding: 0.3rem;
+            box-sizing: border-box;
+            background-color: lightgrey;
+            border-radius: 0.3rem;
+        }
+
+        .catalog__item:not(:first-child) {
+            margin-top: 0.5rem;
+        }
+
+        .item__link {
+            text-decoration: none;
+        }
+
+        .remove-btn {
+            background-color: orange;
+            color: aliceblue;
+            padding: 0.1rem 0.5rem;
+            border-radius: 0.3rem;
+        }
+
+        .add-form {
+            max-width: 160px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-input {
+            padding: 0.3rem;
+            border-radius: 0.3rem;
+            border: none;
+            background-color: lightblue;
+        }
+
+        .form-input:last-of-type {
+            margin-top: 0.2rem;
+        }
+
+        .form-btn {
+            padding: 0.3rem 1rem;
+            margin-top: 0.7rem;
+            cursor: pointer;
+            border-radius: 0.3rem;
+            border: none;
+            background-color: lightgreen;
+        }
+
+        .form-input_font-size {
+            font-size: medium;
+        }
+
+        .backlink {
+            display: inline-block;
+            padding: 0.5rem;
+        }
+    </style>
+    <title>Catalog</title>
+</head>
+<body>
+    <section class="catalog container">
+        <a href="#" class="backlink" th:href="@{ / }">Back to Main</a>
+        <div class="product__box container">
+            <div class="catalog__item" th:each="p : ${ products }">
+                <a href="#" class="item__link" 
+                th:text="${ p.title }" 
+                th:href="@{ '/catalog/' + ${ p.id } }">product title</a>
+                <span class="item__id-value" th:text="${ p.id }">000</span>
+                <a href="#" class="item__link remove-btn" th:href="@{ /catalog(action='remove', id=${ p.id }) }">remove</a>
+            </div>
+        </div>
+    </section>
+    <form action="#" class="add-form container"
+    th:method="post"
+    th:action="@{ /catalog }">
+        <input class="form-input form-input_font-size" type="text" placeholder="title" th:name="title">
+        <input class="form-input form-input_font-size" type="text" placeholder="cost" th:name="cost">
+        <button class="form-btn form-input_font-size" type="submit">Add new product</button>
+    </form>
+</body>
+</html>
