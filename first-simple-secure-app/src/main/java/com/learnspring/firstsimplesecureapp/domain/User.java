@@ -1,10 +1,22 @@
 package com.learnspring.firstsimplesecureapp.domain;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import javax.persistence.*;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Entity
 @Table(name = "user_test_tbl")
-public class User {
+public class User implements UserDetails {
+
+  private static final long serialVersionUID = 1L;
   
   @Id
   @GeneratedValue
@@ -42,7 +54,7 @@ public class User {
   }
 
   public void setPassword(String password) {
-    this.password = password;
+    this.password = passwordEncoder().encode(password);
   }
 
   public Role getRole() {
@@ -55,10 +67,46 @@ public class User {
 
   public User(String login, String password, Role role) {
     this.login = login;
-    this.password = password;
+    this.password = passwordEncoder().encode(password);
     this.role = role;
   }
   
   public User() { }
+  
+  private PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    List<GrantedAuthority> authorities = new ArrayList<>();
+    authorities.add(new SimpleGrantedAuthority(role.name()));
+    return authorities;
+  }
+
+  @Override
+  public String getUsername() {
+    return getLogin();
+  }
+
+  @Override
+  public boolean isAccountNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isAccountNonLocked() {
+    return true;
+  }
+
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isEnabled() {
+    return true;
+  }
   
 }

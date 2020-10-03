@@ -2,6 +2,8 @@ package com.learnspring.firstsimplesecureapp.service;
 
 import java.util.List;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.learnspring.firstsimplesecureapp.dao.UserDao;
@@ -34,6 +36,11 @@ public class UserServiceImpl implements UserService {
   @Override
   public void delete(Integer id) {
     dao.deleteById(id);
+  }
+
+  @Override
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    return dao.findByLogin(username);
   }
 
 }

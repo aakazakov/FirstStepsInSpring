@@ -2,9 +2,11 @@ package com.learnspring.firstsimplesecureapp.service;
 
 import java.util.List;
 
+import org.springframework.security.core.userdetails.UserDetailsService;
+
 import com.learnspring.firstsimplesecureapp.domain.User;
 
-public interface UserService {
+public interface UserService extends UserDetailsService {
   
   User save(User user);
   
