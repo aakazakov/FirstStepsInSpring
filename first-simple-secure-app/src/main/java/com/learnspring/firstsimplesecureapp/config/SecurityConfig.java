@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.learnspring.firstsimplesecureapp.domain.Role;
 import com.learnspring.firstsimplesecureapp.service.UserService;
 
 @EnableWebSecurity
@@ -25,7 +26,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.authorizeRequests().antMatchers("/**").permitAll();
+    http.authorizeRequests()
+      .antMatchers("/catalog","/catalog/**").hasAnyAuthority(Role.ADMIN.name(), Role.MANAGER.name())
+      .antMatchers("/").permitAll()
+      .and()
+      .httpBasic();
   }
   
   @Bean

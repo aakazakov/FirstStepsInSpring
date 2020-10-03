@@ -54,7 +54,8 @@ public class User implements UserDetails {
   }
 
   public void setPassword(String password) {
-    this.password = passwordEncoder().encode(password);
+    this.password = password;
+    this.password = encode(password);
   }
 
   public Role getRole() {
@@ -67,11 +68,16 @@ public class User implements UserDetails {
 
   public User(String login, String password, Role role) {
     this.login = login;
-    this.password = passwordEncoder().encode(password);
+    this.password = password;
+    this.password = encode(password);
     this.role = role;
   }
   
   public User() { }
+  
+  private String encode(String password) {
+    return passwordEncoder().encode(password);
+  }
   
   private PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
