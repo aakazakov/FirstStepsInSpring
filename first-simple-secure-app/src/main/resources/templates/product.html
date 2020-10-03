@@ -56,14 +56,14 @@
             padding: 0.5rem;
         }
     </style>
-    <title>Product</title>
+    <title th:text="${ product.title }">Product</title>
 </head>
 <body>
     <div class="product container">
         <a href="#" class="backlink" th:href="@{ /catalog }">Back to Catalog</a>
         <div class="product__data">
             <img class="product__img"
-            src="https://via.placeholder.com/200/00FFCC/FFFFFF?text=product" alt="product image">
+            th:src="@{ https://via.placeholder.com/200/00FFCC/FFFFFF(text=${ product.title }) }" alt="product image">
             <h3 class="product__title" th:text="${ product.title }">product title</h3>
             <p class="product__id">Id: <span class="product__id-value" th:text="${ product.id }">000</span></p>
             <p class="product__desc">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto, libero?<p/>
