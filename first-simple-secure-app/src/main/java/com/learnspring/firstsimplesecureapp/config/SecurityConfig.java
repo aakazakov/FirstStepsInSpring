@@ -28,9 +28,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http.authorizeRequests()
       .antMatchers("/catalog","/catalog/**").hasAnyAuthority(Role.ADMIN.name(), Role.MANAGER.name())
+      .antMatchers("/users").hasAuthority(Role.ADMIN.name())
       .antMatchers("/").permitAll()
       .and()
-      .httpBasic();
+      .formLogin()
+      .and()
+      .logout().logoutSuccessUrl("/");
   }
   
   @Bean

@@ -13,7 +13,8 @@ public class MainController {
   @ResponseBody
   public String greeting() {
     return "<h1 style=\"color:orange\">Hello, World ))</h1>"
-        + "<a style=\"margin-left:2rem\" href=\"/app/catalog\">Goto Products</a>";
+        + "<a style=\"margin-left:2rem\" href=\"/app/catalog\">Goto Products</a>"
+        + "<a style=\"margin-left:2rem\" href=\"/app/users\">Goto Users</a>";
   }
 
 }

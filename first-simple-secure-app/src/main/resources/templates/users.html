@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .container {
+            margin: 0 auto;
+        }
+
+        .users {
+            margin-top: 1rem;
+            max-width: 960px;
+        }
+
+        .users__title {
+            text-align: center;
+        }
+
+        .backlink {
+            display: inline-block;
+            padding: 0.5rem;
+        }
+
+        .users__table {
+            border-style: dotted;
+            border-spacing: 1rem;
+            border-collapse: collapse;
+        }
+        
+        .users__table-row:nth-of-type(even) {
+            background-color: lightgray;
+        }
+        
+        .users__table-data {
+            padding: 0.5rem 1rem;
+            text-align: center;
+        }
+
+    </style>
+    <title>Users</title>
+</head>
+<body>
+    <div class="users container">
+        <a href="#" class="backlink" th:href="@{ / }">Back to Main</a>
+        <h3 class="users__title">Users</h3>
+        <table class="users__table container">
+            <tr class="users__table-row">
+                <th>uid</th>
+                <th>login</th>
+                <th>password</th>
+                <th>role</th>
+            </tr>
+            <tr class="users__table-row" th:each="u : ${ users }">
+                <td class="users__table-data" th:text="${ u.id }">1</td>
+                <td class="users__table-data" th:text="${ u.login }">user</td>
+                <td class="users__table-data" th:text="${ u.password }">123</td>
+                <td class="users__table-data" th:text="${ u.role }">admin</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
