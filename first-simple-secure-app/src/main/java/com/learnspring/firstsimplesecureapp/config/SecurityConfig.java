@@ -14,7 +14,6 @@ import com.learnspring.firstsimplesecureapp.domain.Role;
 import com.learnspring.firstsimplesecureapp.service.UserService;
 
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
   
   private UserService userService;
